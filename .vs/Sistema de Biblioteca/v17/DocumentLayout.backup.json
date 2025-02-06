@@ -1,0 +1,134 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\gabri\\OneDrive\\\u00C1rea de Trabalho\\Sistema de Biblioteca\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{06F8546A-EDAB-4B3D-ACA4-2EBD4EA5F33B}|Sistema de Biblioteca.csproj|c:\\users\\gabri\\onedrive\\\u00E1rea de trabalho\\sistema de biblioteca\\entities\\usuario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{06F8546A-EDAB-4B3D-ACA4-2EBD4EA5F33B}|Sistema de Biblioteca.csproj|solutionrelative:entities\\usuario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{06F8546A-EDAB-4B3D-ACA4-2EBD4EA5F33B}|Sistema de Biblioteca.csproj|c:\\users\\gabri\\onedrive\\\u00E1rea de trabalho\\sistema de biblioteca\\services\\atraso.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{06F8546A-EDAB-4B3D-ACA4-2EBD4EA5F33B}|Sistema de Biblioteca.csproj|solutionrelative:services\\atraso.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{06F8546A-EDAB-4B3D-ACA4-2EBD4EA5F33B}|Sistema de Biblioteca.csproj|c:\\users\\gabri\\onedrive\\\u00E1rea de trabalho\\sistema de biblioteca\\entities\\emprestimo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{06F8546A-EDAB-4B3D-ACA4-2EBD4EA5F33B}|Sistema de Biblioteca.csproj|solutionrelative:entities\\emprestimo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{06F8546A-EDAB-4B3D-ACA4-2EBD4EA5F33B}|Sistema de Biblioteca.csproj|c:\\users\\gabri\\onedrive\\\u00E1rea de trabalho\\sistema de biblioteca\\entities\\mainmenu\\menu.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{06F8546A-EDAB-4B3D-ACA4-2EBD4EA5F33B}|Sistema de Biblioteca.csproj|solutionrelative:entities\\mainmenu\\menu.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{06F8546A-EDAB-4B3D-ACA4-2EBD4EA5F33B}|Sistema de Biblioteca.csproj|c:\\users\\gabri\\onedrive\\\u00E1rea de trabalho\\sistema de biblioteca\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{06F8546A-EDAB-4B3D-ACA4-2EBD4EA5F33B}|Sistema de Biblioteca.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{06F8546A-EDAB-4B3D-ACA4-2EBD4EA5F33B}|Sistema de Biblioteca.csproj|c:\\users\\gabri\\onedrive\\\u00E1rea de trabalho\\sistema de biblioteca\\entities\\livro.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{06F8546A-EDAB-4B3D-ACA4-2EBD4EA5F33B}|Sistema de Biblioteca.csproj|solutionrelative:entities\\livro.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 5,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:129:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Atraso.cs",
+              "DocumentMoniker": "C:\\Users\\gabri\\OneDrive\\\u00C1rea de Trabalho\\Sistema de Biblioteca\\Services\\Atraso.cs",
+              "RelativeDocumentMoniker": "Services\\Atraso.cs",
+              "ToolTip": "C:\\Users\\gabri\\OneDrive\\\u00C1rea de Trabalho\\Sistema de Biblioteca\\Services\\Atraso.cs",
+              "RelativeToolTip": "Services\\Atraso.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABkAAAAzAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-06T02:06:36.655Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Livro.cs",
+              "DocumentMoniker": "C:\\Users\\gabri\\OneDrive\\\u00C1rea de Trabalho\\Sistema de Biblioteca\\Entities\\Livro.cs",
+              "RelativeDocumentMoniker": "Entities\\Livro.cs",
+              "ToolTip": "C:\\Users\\gabri\\OneDrive\\\u00C1rea de Trabalho\\Sistema de Biblioteca\\Entities\\Livro.cs",
+              "RelativeToolTip": "Entities\\Livro.cs",
+              "ViewState": "AgIAAHcAAAAAAAAAAAAAAHwAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-30T13:03:13.479Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Usuario.cs",
+              "DocumentMoniker": "C:\\Users\\gabri\\OneDrive\\\u00C1rea de Trabalho\\Sistema de Biblioteca\\Entities\\Usuario.cs",
+              "RelativeDocumentMoniker": "Entities\\Usuario.cs",
+              "ToolTip": "C:\\Users\\gabri\\OneDrive\\\u00C1rea de Trabalho\\Sistema de Biblioteca\\Entities\\Usuario.cs",
+              "RelativeToolTip": "Entities\\Usuario.cs",
+              "ViewState": "AgIAAGQAAAAAAAAAAAAAACYAAABxAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-10T18:21:16.538Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\gabri\\OneDrive\\\u00C1rea de Trabalho\\Sistema de Biblioteca\\Program.cs",
+              "RelativeDocumentMoniker": "Program.cs",
+              "ToolTip": "C:\\Users\\gabri\\OneDrive\\\u00C1rea de Trabalho\\Sistema de Biblioteca\\Program.cs",
+              "RelativeToolTip": "Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-10T05:14:28.97Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Menu.cs",
+              "DocumentMoniker": "C:\\Users\\gabri\\OneDrive\\\u00C1rea de Trabalho\\Sistema de Biblioteca\\Entities\\MainMenu\\Menu.cs",
+              "RelativeDocumentMoniker": "Entities\\MainMenu\\Menu.cs",
+              "ToolTip": "C:\\Users\\gabri\\OneDrive\\\u00C1rea de Trabalho\\Sistema de Biblioteca\\Entities\\MainMenu\\Menu.cs",
+              "RelativeToolTip": "Entities\\MainMenu\\Menu.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-10T04:49:43.586Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Emprestimo.cs",
+              "DocumentMoniker": "C:\\Users\\gabri\\OneDrive\\\u00C1rea de Trabalho\\Sistema de Biblioteca\\Entities\\Emprestimo.cs",
+              "RelativeDocumentMoniker": "Entities\\Emprestimo.cs",
+              "ToolTip": "C:\\Users\\gabri\\OneDrive\\\u00C1rea de Trabalho\\Sistema de Biblioteca\\Entities\\Emprestimo.cs",
+              "RelativeToolTip": "Entities\\Emprestimo.cs",
+              "ViewState": "AgIAABYBAAAAAAAAAAAAAAgAAABQAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-09T23:04:53.459Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
