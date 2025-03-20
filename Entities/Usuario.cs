@@ -6,15 +6,16 @@ namespace Sistema_de_Biblioteca.Entities
 {
     public class Usuario
     {
-        protected static readonly List<Usuario> Usuarios = new(); // tirar
+        protected static readonly List<Usuario> Usuarios = new();
         internal int Id { get; }
         internal string? Nome { get; }
         private DateTime DataNascimento { get; }
 
+        // verificar o uso desse primeiro construtor posteriormente
         protected Usuario()
         {
-        }
 
+        }
         private Usuario(int id, string? nome, DateTime dataNascimento)
         {
             Id = id;
@@ -32,6 +33,8 @@ namespace Sistema_de_Biblioteca.Entities
                 Console.Write("Identifique o usuário com um ID: ");
                 int id = int.Parse(Console.ReadLine());
                 if (id < 0) throw new LibraryExceptions("ID inválido!"); // IDs só podem ser 0 ou maior que eles
+                // verificando se já não existe nenhum usuário com o mesmo ID
+                if (Usuarios.Any(u => u.Id == id)) throw new LibraryExceptions("Já existe um usuário com esse ID!");
 
                 Console.Write("Digite o nome do usuário: ");
                 string? nome = Console.ReadLine();
@@ -41,12 +44,10 @@ namespace Sistema_de_Biblioteca.Entities
                 Console.Write("Digite a data de nascimento do usuário: ");
                 DateTime dataNascimento = DateTime.ParseExact(Console.ReadLine(), "dd/MM/yyyy", CultureInfo.InvariantCulture);
 
-                // verificando se já não existe nenhum usuário com o mesmo ID
-                if (Usuarios.Any(u => u.Id == id)) throw new LibraryExceptions("Já existe um usuário com esse ID!");
-
                 // adicionando em uma lista
-                var novoUsuario = new Usuario(id, nome, dataNascimento);
-                Usuarios.Add(novoUsuario);
+                // Agora, não é necessário uma variável p/ criar um novo usuário, ele vai direto para a lista.
+                // Código anterior: var novoUsuario = new Usuario(id, nome, dataNascimento);
+                Usuarios.Add(new Usuario(id, nome, dataNascimento));
 
                 Console.WriteLine("Usuário adicionado à lista! Aguarde...");
                 Thread.Sleep(2000);
@@ -54,7 +55,7 @@ namespace Sistema_de_Biblioteca.Entities
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Error: " + ex.Message);
+                Console.WriteLine("Erro: " + ex.Message);
             }
         }
 
@@ -90,7 +91,7 @@ namespace Sistema_de_Biblioteca.Entities
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Error: " + ex.Message);
+                Console.WriteLine("Erro: " + ex.Message);
             }
         }
 
@@ -109,12 +110,10 @@ namespace Sistema_de_Biblioteca.Entities
                 int id = int.Parse(Console.ReadLine());
                 if (id < 0) throw new LibraryExceptions("ID invalido!");
 
+                // Agora, a int id ou é nula ou o id armazenado nela for diferente do id do usuário
+                // Código anterior: if (usuario == null) throw new LibraryExceptions("Usuário não encontrado!")
                 var usuario = Usuarios.FirstOrDefault(u => u.Id == id);
-                if (usuario == null)
-                {
-                    Console.WriteLine("Usuário não encontrado.");
-                    return;
-                }
+                if (usuario == null || id != usuario.Id) Console.WriteLine("Usuário não encontrado! Verifique se o ID está digitado corretamente.");
 
                 Usuarios.Remove(usuario);
                 Console.WriteLine("Usuário removido com sucesso!");
@@ -126,7 +125,7 @@ namespace Sistema_de_Biblioteca.Entities
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Error: " + ex.Message);
+                Console.WriteLine("Erro: " + ex.Message);
             }
         }
 

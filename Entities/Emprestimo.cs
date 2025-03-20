@@ -65,17 +65,23 @@ public abstract class Emprestimo : Usuario
                 Console.WriteLine("ID inválido. Tente novamente: ");
             }
 
+            // Agora, a int id ou é nula ou o id armazenado nela for diferente do id do usuário
+            // Código anterior: if (usuario == null) throw new LibraryExceptions("Usuário não encontrado!")
             var usuario = Usuarios.Find(u => u.Id == id);
-            if (usuario == null) throw new LibraryExceptions("Usuário não encontrado!");
+            if (usuario == null || usuario.Id != id) throw new LibraryExceptions("Usuário não encontrado! Verifique se o ID está digitado corretamente.");
             Console.WriteLine($"Usuário encontrado: {usuario.Id} | {usuario.Nome}");
 
             // Verificar se o usuário já possui empréstimos pendentes
+
+            /* Código anterior:
             var emprestimosPendentes = RegistroEmprestimo.Where(e => e.UsuarioId == id && e.QuantidadeEmprestimo > 0).ToList();
             if (emprestimosPendentes.Any())
             {
                 Console.WriteLine("Este usuário possui empréstimos pendentes e não pode realizar um novo empréstimo até que os anteriores sejam devolvidos.");
                 return;
             }
+            */
+            VerificarEmprestimoPendente(usuario);
 
             Console.WriteLine();
 
@@ -185,6 +191,16 @@ public abstract class Emprestimo : Usuario
         }
     }
 
+    private static void VerificarEmprestimoPendente(Usuario usuario)
+    {
+        var emprestimosPendentes = RegistroEmprestimo.Where(e => e.UsuarioId == usuario.Id && e.QuantidadeEmprestimo > 0).ToList();
+        if (emprestimosPendentes.Any())
+        {
+            Console.WriteLine("Este usuário possui empréstimos pendentes e não pode realizar um novo empréstimo até que os anteriores sejam devolvidos. Voltando ao menu de empréstimos...");
+            Thread.Sleep(2000);
+            Menu();
+        }
+    }
     private static void RegistrarDevolucao()
     {
         try
@@ -202,7 +218,7 @@ public abstract class Emprestimo : Usuario
             var emprestimosDoUsuario = RegistroEmprestimo.Where(e => e.UsuarioId == id).ToList();
             if (!emprestimosDoUsuario.Any())
             {
-                throw new LibraryExceptions($"Não há empréstimos com este usuário. ID de identificação {id}");
+                throw new LibraryExceptions($"Não há empréstimos com este usuário. ID de identificação: {id}");
             }
             Console.WriteLine();
 
@@ -212,7 +228,7 @@ public abstract class Emprestimo : Usuario
             // Tratamento de nomes ausentes
             if (string.IsNullOrWhiteSpace(nomeUsuario))
             {
-                Console.WriteLine($"O nome do usuário com ID {id} não está registrado. Verifique os dados.");
+                Console.WriteLine($"O nome de usuário do ID {id} não está registrado. Verifique os dados.");
                 return;
             }
 
@@ -234,14 +250,20 @@ public abstract class Emprestimo : Usuario
             Console.Write("Quantas cópias irão ser devolvidas? ");
             var quantidade = int.Parse(Console.ReadLine());
 
-            if(quantidade > buscarEmprestimo.QuantidadeEmprestimo) throw new LibraryExceptions("Quantidade para devolução é maior do que foi emprestado");
-            if (quantidade <= 0) throw new LibraryExceptions("A quantidade deve ser maior que zero.");
+            // Agora, só há um if para as duas verificações
+            if (quantidade <= 0 || quantidade > buscarEmprestimo.QuantidadeEmprestimo) throw new LibraryExceptions("Quantidade para devolução é menor que 0 ou maior do que foi emprestado");
+            // if (quantidade <= 0) throw new LibraryExceptions("A quantidade deve ser maior que zero.");
+            
+            // Verificando se a data de devolução não é maior que o prazo estipulado
+            Console.Write("Data da Devolução: ");
+            DateTime dataDevolucao = DateTime.ParseExact(Console.ReadLine(), "dd/MM/yyyy", CultureInfo.InvariantCulture);
+            VerificarAtraso(HoraDeDevolucao, dataDevolucao);
 
             // Atualizar o registro de empréstimo
             buscarEmprestimo.QuantidadeEmprestimo -= quantidade;
 
             // Remover registro caso não haja mais livros a serem devolvidos
-            if(buscarEmprestimo.QuantidadeEmprestimo == 0) RegistroEmprestimo.Remove(buscarEmprestimo);
+            if (buscarEmprestimo.QuantidadeEmprestimo == 0) RegistroEmprestimo.Remove(buscarEmprestimo);
 
             Console.WriteLine();
 
@@ -254,10 +276,6 @@ public abstract class Emprestimo : Usuario
 
                 Console.WriteLine();
 
-                // Verificando se a data de devolução não é maior que o prazo estipulado
-                Console.Write("Data da Devolução: ");
-                DateTime dataDevolucao = DateTime.ParseExact(Console.ReadLine(), "dd/MM/yyyy", CultureInfo.InvariantCulture);
-                VerificarAtraso(HoraDeDevolucao, dataDevolucao);
 
                 Console.WriteLine("Devolução registrada com sucessso!");
                 Console.WriteLine("LISTA DE LIVROS ATUALIZADAS:");

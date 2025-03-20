@@ -42,8 +42,9 @@ namespace Sistema_de_Biblioteca.Entities
                 if(quantidadeCopias <= 0) throw new LibraryExceptions("Não há cópias para ser catalogado (não é preciso o registro)");
 
                 // Adicionando em uma lista
-                var novoLivro = new Livro(nomeLivro, autorLivro, anoPublicacao, quantidadeCopias);
-                Livros.Add(novoLivro);
+                // Agora, não é necessário uma variável p/ criar um novo livro, ele vai direto para a lista.
+                // Código anterior: var novoLivro = new Livro(nomeLivro, autorLivro, anoPublicacao, quantidadeCopias);
+                Livros.Add(new Livro(nomeLivro, autorLivro, anoPublicacao, quantidadeCopias));
 
                 Console.WriteLine("Livro catalogado com sucesso! Aguarde...");
                 Thread.Sleep(2000);
@@ -51,7 +52,7 @@ namespace Sistema_de_Biblioteca.Entities
             }
             catch (Exception e)
             {
-                Console.WriteLine("Error: " + e.Message);
+                Console.WriteLine("Erro: " + e.Message);
             }
         }
 
@@ -70,6 +71,7 @@ namespace Sistema_de_Biblioteca.Entities
                 Console.WriteLine("1 - Realizar/Verificar um Empréstimo/Registrar uma Devolução");
                 Console.WriteLine("2 - Voltar ao Menu Principal");
                 Console.WriteLine("3 - Sair");
+                
                 int op;
                 if (!int.TryParse(Console.ReadLine(), out op))
                 {
@@ -87,7 +89,7 @@ namespace Sistema_de_Biblioteca.Entities
             }
             catch (Exception e)
             {
-                Console.WriteLine("Error: " + e.Message);
+                Console.WriteLine("Erro: " + e.Message);
             }
         }
 
@@ -104,12 +106,13 @@ namespace Sistema_de_Biblioteca.Entities
 
             // removendo o livro pelo seu nome
             Console.Write("Digite o nome do livro para removê-lo: ");
-            var nomeLivro = Console.ReadLine();
+            string nomeLivro = Console.ReadLine();
             if (string.IsNullOrEmpty(nomeLivro)) throw new LibraryExceptions("Insira um nome válido!");
-
             var livro = Livros.Find(l => l.NomeLivro == nomeLivro);
 
-            if (livro == null) throw new LibraryExceptions("Livro não encontrado!");
+            // Agora, a string livro ou é nula ou o nome armazenado nela for diferente do nome do livro
+            // Código anterior: if (livro == null) throw new LibraryExceptions("Livro não encontrado!")
+            if (livro == null || nomeLivro != livro.NomeLivro) throw new LibraryExceptions("Livro não encontrado! Verifique se o nome está digitado corretamente.");
             Livros.Remove(livro);
             Console.WriteLine("Livro removido com sucesso!");
 

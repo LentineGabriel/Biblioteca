@@ -33,11 +33,13 @@
                     case 1: Usuario.NovoUsuario(); break;
                     case 2: Usuario.UsuariosCadastrados(); break;
                     case 3: Usuario.DeletarUsuarios(); break;
+
                     // Menu para os livros (4-6)
                     case 4: Livro.NovoLivro(); break;
                     case 5: Livro.LivrosCadastrados(); break;
                     case 6: Livro.DeletarLivros(); break;
 
+                    // Sair
                     case 7: Environment.Exit(0); break;
                     default: Console.WriteLine("Opção inválida!"); break;
                 }
