@@ -18,3 +18,6 @@ Por ser um projeto simples (apenas com lógica e POO), o projeto não conta com 
 O projeto foi bem divertido de ser feito. Foi uma experiência incrível e desafiadora, apesar dele ser simples. Tentei deixá-lo o mais amigável possível, mas com uma lógica bem estruturada por trás, dando, ao usuário, uma boa, fácil e agradável experiência.
 Não é um projeto 100% perfeito, com certeza deve ter tidos erros que deixei passar, mas, para 8 meses de estudos, estou muito satisfeito com o resultado; e em busca de desafios maiores, mas tão prazeroso quanto foi esse. <br>
 DATA DE TÉRMINO DO PROJETO: <strong>05/02/2025</strong>
+
+O projeto está sendo atualizado, melhorando sua legibilidade e aplicando os princípios SOLID. <br>
+DATA DA PRIMEIRA ATUALIZAÇÂO: <strong>20/03/2025</strong>
