@@ -33,13 +33,13 @@ namespace Sistema_de_Biblioteca.Entities
                 Console.Write("Identifique o usuário com um ID: ");
                 int id = int.Parse(Console.ReadLine());
                 if (id < 0) throw new LibraryExceptions("ID inválido!"); // IDs só podem ser 0 ou maior que eles
+                
                 // verificando se já não existe nenhum usuário com o mesmo ID
                 if (Usuarios.Any(u => u.Id == id)) throw new LibraryExceptions("Já existe um usuário com esse ID!");
 
                 Console.Write("Digite o nome do usuário: ");
                 string? nome = Console.ReadLine();
-                if (string.IsNullOrWhiteSpace(nome))
-                    throw new LibraryExceptions("O nome do usuário não pode ser vazio ou conter espaços em branco!");
+                if (string.IsNullOrWhiteSpace(nome)) throw new LibraryExceptions("O nome do usuário não pode ser vazio ou conter espaços em branco!");
 
                 Console.Write("Digite a data de nascimento do usuário: ");
                 DateTime dataNascimento = DateTime.ParseExact(Console.ReadLine(), "dd/MM/yyyy", CultureInfo.InvariantCulture);
@@ -137,7 +137,8 @@ namespace Sistema_de_Biblioteca.Entities
             {
                 Console.WriteLine($"ID: {u.Id} " +
                                   $"| Nome : {u.Nome} " +
-                                  $"| Data de Nascimento: {u.DataNascimento}");
+                                  $"| Data de Nascimento: {u.DataNascimento.ToString("dd/MM/yyyy")}");
+                                  // agora, só exibe a data (antes exibia um horário)
             }
             Console.WriteLine();
         }
