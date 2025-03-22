@@ -33,7 +33,7 @@ namespace Sistema_de_Biblioteca.Entities
                 Console.Write("Identifique o usuário com um ID: ");
                 int id = int.Parse(Console.ReadLine());
                 if (id < 0) throw new LibraryExceptions("ID inválido!"); // IDs só podem ser 0 ou maior que eles
-                
+
                 // verificando se já não existe nenhum usuário com o mesmo ID
                 if (Usuarios.Any(u => u.Id == id)) throw new LibraryExceptions("Já existe um usuário com esse ID!");
 
@@ -53,9 +53,25 @@ namespace Sistema_de_Biblioteca.Entities
                 Thread.Sleep(2000);
                 Menu.MainMenu();
             }
-            catch (Exception ex)
+            catch (ArgumentNullException e)
             {
-                Console.WriteLine("Erro: " + ex.Message);
+                Console.WriteLine($"Erro: Nenhuma entrada foi fornecida. {e.Message}");
+            }
+            catch (OverflowException e)
+            {
+                Console.WriteLine($"Erro: O número inserido é muito grande. {e.Message}");
+            }
+            catch (ThreadInterruptedException e)
+            {
+                Console.WriteLine($"Erro: O processo de espera foi interrompido. {e.Message}");
+            }
+            catch (FormatException e)
+            {
+                Console.WriteLine($"Erro: Entrada inválida! Certifique-se de inserir um número para o ID e/ou uma data válida. {e.Message}");
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine($"Erro: {e.Message}");
             }
         }
 
@@ -89,9 +105,17 @@ namespace Sistema_de_Biblioteca.Entities
                     default: Console.WriteLine("Número inválido!"); break;
                 }
             }
-            catch (Exception ex)
+            catch (FormatException e)
             {
-                Console.WriteLine("Erro: " + ex.Message);
+                Console.WriteLine($"Erro: Entrada inválida! Insira um número válido. {e.Message}");
+            }
+            catch (ArgumentNullException e)
+            {
+                Console.WriteLine($"Erro: Nenhuma entrada foi fornecida. {e.Message}");
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine($"Erro: {e.Message}");
             }
         }
 
@@ -123,9 +147,21 @@ namespace Sistema_de_Biblioteca.Entities
                 // Exibe todos os IDs cadastrados (depois da remoção) para verificar
                 ListarUsuarios(Usuarios);
             }
-            catch (Exception ex)
+            catch (FormatException e)
             {
-                Console.WriteLine("Erro: " + ex.Message);
+                Console.WriteLine($"Erro: Entrada inválida! O ID deve ser um número. {e.Message}");
+            }
+            catch (ArgumentNullException e)
+            {
+                Console.WriteLine($"Erro: nenhuma entrada foi fornecida. {e.Message}");
+            }
+            catch (InvalidOperationException e)
+            {
+                Console.WriteLine($"Erro: Operação inválida ao buscar o usuário. {e.Message}");
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine($"Erro: {e.Message}");
             }
         }
 
@@ -138,7 +174,7 @@ namespace Sistema_de_Biblioteca.Entities
                 Console.WriteLine($"ID: {u.Id} " +
                                   $"| Nome : {u.Nome} " +
                                   $"| Data de Nascimento: {u.DataNascimento.ToString("dd/MM/yyyy")}");
-                                  // agora, só exibe a data (antes exibia um horário)
+                // agora, só exibe a data (antes exibia um horário)
             }
             Console.WriteLine();
         }

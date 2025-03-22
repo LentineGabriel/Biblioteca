@@ -11,7 +11,7 @@ namespace Sistema_de_Biblioteca.Entities
         public int AnoPublicacao { get; }
         public int QuantidadeCopias { get; set; }
 
-        private Livro(string? nomeLivro, string? autorLivro, int anoPublicacao, int quantidadeCopias)
+        internal Livro(string? nomeLivro, string? autorLivro, int anoPublicacao, int quantidadeCopias)
         {
             NomeLivro = nomeLivro;
             AutorLivro = autorLivro;
@@ -25,21 +25,10 @@ namespace Sistema_de_Biblioteca.Entities
             try
             {
                 Console.Clear();
-                Console.Write("Digite o nome do livro: ");
-                string? nomeLivro = Console.ReadLine();
-                if (string.IsNullOrWhiteSpace(nomeLivro)) throw new LibraryExceptions("O nome do livro não pode estar vazio!");
-
-                Console.Write("Digite o nome do autor do livro: ");
-                string? autorLivro = Console.ReadLine();
-                if (string.IsNullOrWhiteSpace(autorLivro)) throw new LibraryExceptions("O nome do autor não pode estar vazio!");
-
-                Console.Write("Digite o ano de publicação do livro: ");
-                int anoPublicacao = int.Parse(Console.ReadLine());
-                if(anoPublicacao is <= 0 or > 9999) throw new LibraryExceptions("Ano de publicação inválido!");
-
-                Console.Write("Quantidade de copias: ");
-                int quantidadeCopias = int.Parse(Console.ReadLine());
-                if(quantidadeCopias <= 0) throw new LibraryExceptions("Não há cópias para ser catalogado (não é preciso o registro)");
+                string nomeLivro = LerEntrada("Digite o nome do livro: ");
+                string autorLivro = LerEntrada("Digite o nome do autor do livro: ");
+                int anoPublicacao = LerNumero("Digite o ano de publicação do livro: ", 1, 9999);
+                int quantidadeCopias = LerNumero("Quantidade de cópias: ", 1, int.MaxValue);
 
                 // Adicionando em uma lista
                 // Agora, não é necessário uma variável p/ criar um novo livro, ele vai direto para a lista.
@@ -52,7 +41,7 @@ namespace Sistema_de_Biblioteca.Entities
             }
             catch (Exception e)
             {
-                Console.WriteLine("Erro: " + e.Message);
+                Console.WriteLine($"Erro: {e.Message}");
             }
         }
 
@@ -64,66 +53,66 @@ namespace Sistema_de_Biblioteca.Entities
                 Console.Clear();
 
                 // Caso não haja livros catalogados
-                if (Livros.Count == 0) throw new LibraryExceptions("Não há livros para serem listados.");
+                if (!Livros.Any()) throw new LibraryExceptions("Não há livros para serem listados.");
                 ListarLivros(Livros.OrderBy(l => l.NomeLivro));
 
                 Console.WriteLine("O que deseja fazer?");
-                Console.WriteLine("1 - Realizar/Verificar um Empréstimo/Registrar uma Devolução");
-                Console.WriteLine("2 - Voltar ao Menu Principal");
-                Console.WriteLine("3 - Sair");
-                
-                int op;
-                if (!int.TryParse(Console.ReadLine(), out op))
-                {
-                    Console.WriteLine("Por favor, insira um número válido!");
-                    return;
-                }
+                Console.WriteLine("1 - Realizar/Verificar um Empréstimo");
+                Console.WriteLine("2 - Registrar uma Devolução"); // descacoplando da opção 1 para ficar menos verbosa
+                Console.WriteLine("3 - Voltar ao Menu Principal");
+                Console.WriteLine("4 - Sair");
 
+                int op = LerNumero("Escolha uma opção: ", 1, 4);
                 switch (op)
                 {
-                    case 1: Emprestimo.Menu(); break;
-                    case 2: Menu.MainMenu(); break;
-                    case 3: Environment.Exit(0); break;
+                    case 1 or 2: Emprestimo.Menu(); break;
+                    case 3: Menu.MainMenu(); break;
+                    case 4: Environment.Exit(0); break;
                     default: Console.WriteLine("Número inválido!"); break;
                 }
             }
             catch (Exception e)
             {
-                Console.WriteLine("Erro: " + e.Message);
+                Console.WriteLine($"Erro: {e.Message}");
             }
         }
 
         // 100% funcional
         protected internal static void DeletarLivros()
         {
-            Console.Clear();
+            try
+            {
+                Console.Clear();
 
-            // Caso não haja livros catalogados
-            if (Livros.Count == 0) throw new LibraryExceptions("Não há livros para serem listados.");
+                // Caso não haja livros catalogados
+                if (!Livros.Any()) throw new LibraryExceptions("Não há livros para serem listados.");
 
-            // Exibe todos os livros cadastrados (antes de qualquer remoção) para verificar
-            ListarLivros(Livros.OrderBy(l => l.NomeLivro));
+                // Exibe todos os livros cadastrados (antes de qualquer remoção) para verificar
+                ListarLivros(Livros.OrderBy(l => l.NomeLivro));
 
-            // removendo o livro pelo seu nome
-            Console.Write("Digite o nome do livro para removê-lo: ");
-            string nomeLivro = Console.ReadLine();
-            if (string.IsNullOrEmpty(nomeLivro)) throw new LibraryExceptions("Insira um nome válido!");
-            var livro = Livros.Find(l => l.NomeLivro == nomeLivro);
+                // removendo o livro pelo seu nome
+                string nomeLivro = LerEntrada("Digite o nome do livro para removê-lo: ");
+                var livro = Livros.FirstOrDefault(l => l.NomeLivro.Equals(nomeLivro, StringComparison.OrdinalIgnoreCase));
 
-            // Agora, a string livro ou é nula ou o nome armazenado nela for diferente do nome do livro
-            // Código anterior: if (livro == null) throw new LibraryExceptions("Livro não encontrado!")
-            if (livro == null || nomeLivro != livro.NomeLivro) throw new LibraryExceptions("Livro não encontrado! Verifique se o nome está digitado corretamente.");
-            Livros.Remove(livro);
-            Console.WriteLine("Livro removido com sucesso!");
+                // Agora, a string livro ou é nula ou o nome armazenado nela for diferente do nome do livro
+                // Código anterior: if (livro == null) throw new LibraryExceptions("Livro não encontrado!")
+                if (livro == null || nomeLivro != livro.NomeLivro) throw new LibraryExceptions("Livro não encontrado! Verifique se o nome está digitado corretamente.");
+                Livros.Remove(livro);
+                Console.WriteLine("Livro removido com sucesso!");
 
-            Console.WriteLine();
+                Console.WriteLine();
 
-            // Exibe todos os livros cadastrados (depois da remoção) para verificar
-            ListarLivros(Livros);
+                // Exibe todos os livros cadastrados (depois da remoção) para verificar
+                ListarLivros(Livros);
 
-            Console.WriteLine("Pressione qualquer tecla para voltar ao menu principal...");
-            Console.ReadKey();
-            Menu.MainMenu();
+                Console.WriteLine("Pressione qualquer tecla para voltar ao menu principal...");
+                Console.ReadKey();
+                Menu.MainMenu();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine($"Erro: {e.Message}");
+            }
         }
 
         // 100% funcional
@@ -138,6 +127,21 @@ namespace Sistema_de_Biblioteca.Entities
                                   $"| Quantidade de Cópias: {l.QuantidadeCopias}");
             }
             Console.WriteLine();
+        }
+
+        private static string LerEntrada(string mensagem)
+        {
+            Console.Write(mensagem);
+            string? entrada = Console.ReadLine();
+            if (String.IsNullOrWhiteSpace(entrada)) throw new LibraryExceptions("O campo não pode estar vazio.");
+            return entrada;
+        }
+
+        private static int LerNumero(string mensagem, int min, int max)
+        {
+            Console.Write(mensagem);
+            if (!int.TryParse(Console.ReadLine(), out int valor) || valor < min || valor > max) throw new LibraryExceptions("Valor inválido! Tente novamente.");
+            return valor;
         }
     }
 }
