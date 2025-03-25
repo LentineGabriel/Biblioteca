@@ -13,6 +13,7 @@ namespace Sistema_de_Biblioteca.Entities
 
         // verificar o uso desse primeiro construtor posteriormente
         protected Usuario() { }
+
         private Usuario(int id, string? nome, DateTime dataNascimento)
         {
             Id = id;
@@ -161,22 +162,22 @@ namespace Sistema_de_Biblioteca.Entities
         private static void ExibirOpcoesMenu()
         {
             Console.WriteLine("O que deseja fazer?");
-                Console.WriteLine("1 - Voltar ao Menu Principal");
-                Console.WriteLine("2 - Realizar/Verificar um Empréstimo/Registrar uma Devolução");
-                Console.WriteLine("3 - Sair");
-                if (!int.TryParse(Console.ReadLine(), out int op))
-                {
-                    Console.WriteLine("Por favor, insira um número válido!");
-                    return;
-                }
+            Console.WriteLine("1 - Voltar ao Menu Principal");
+            Console.WriteLine("2 - Realizar/Verificar um Empréstimo/Registrar uma Devolução");
+            Console.WriteLine("3 - Sair");
+            if (!int.TryParse(Console.ReadLine(), out int op))
+            {
+                Console.WriteLine("Por favor, insira um número válido!");
+                return;
+            }
 
-                switch (op)
-                {
-                    case 1: Menu.MainMenu(); break;
-                    case 2: Emprestimo.Menu(); break;
-                    case 3: Environment.Exit(0); break;
-                    default: Console.WriteLine("Número inválido!"); break;
-                }
+            switch (op)
+            {
+                case 1: Menu.MainMenu(); break;
+                case 2: Emprestimo.Menu(); break;
+                case 3: Environment.Exit(0); break;
+                default: Console.WriteLine("Número inválido!"); break;
+            }
         }
     }
 }
